@@ -79,7 +79,7 @@ export default function Category() {
     useEffect(() => {
         const container = containerRef.current;
         container.addEventListener('scroll', checkScroll);
-        checkScroll(); // Initial check
+        checkScroll();
         return () => container.removeEventListener('scroll', checkScroll);
     }, []);
 
