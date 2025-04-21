@@ -65,7 +65,7 @@ export default function Header() {
         <div className="w-full lg:w-1/2 h-[50vh] lg:h-[70vh] relative mt-12 lg:mt-0">
           <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="/bg-image-2.webp" // Use an image of a woman using beauty products
+              src="/modifield.png" // Use an image of a woman using beauty products
               alt="Woman enjoying our beauty products"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
