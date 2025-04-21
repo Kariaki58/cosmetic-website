@@ -83,7 +83,7 @@ export default function Category() {
     }, []);
 
     return (
-        <section className="py-12 px-4">
+        <section className="py-12 px-4 mb-20">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-3xl font-serif font-bold text-center text-gray-800 mb-2">
                     Explore Our Beauty World
