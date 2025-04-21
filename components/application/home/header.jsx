@@ -1,9 +1,9 @@
 import Image from "next/image";
+import ButtonLink from "./ButtonLink";
 
 export default function Header() {
   return (
     <header className="relative w-full min-h-[70vh] bg-gradient-to-r from-[#fff5f5] to-[#fff] overflow-hidden">
-      {/* Decorative floral elements */}
       <div className="absolute top-0 left-0 w-1/3 h-full opacity-10">
         <Image
           src="/floral.png"
@@ -14,7 +14,6 @@ export default function Header() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row items-center">
-        {/* Text content - now on left */}
         <div className="w-full lg:w-1/2 lg:pr-12 flex flex-col justify-center relative z-10">
           <span className="text-lg font-medium text-rose-500 mb-2 tracking-widest">
             LUXURY BEAUTY COLLECTION
@@ -30,15 +29,12 @@ export default function Header() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6">
-            <button className="bg-rose-500 hover:bg-rose-600 text-white font-medium py-4 px-10 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center">
-              <span>Discover Your Glow</span>
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </button>
-            <button className="border-2 border-rose-400 hover:bg-rose-50 text-rose-500 font-medium py-4 px-10 rounded-full transition-all duration-300 hover:scale-105 flex items-center justify-center">
-              <span>Our Philosophy</span>
-            </button>
+            <ButtonLink href="/shop" variant="primary">
+              Shop Now
+            </ButtonLink>
+            <ButtonLink href="/about" variant="secondary">
+              Our Philosophy
+            </ButtonLink>
           </div>
 
           <div className="mt-12 flex items-center space-x-6">
@@ -48,7 +44,7 @@ export default function Header() {
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
                 </svg>
               </div>
-              <span className="text-gray-600">Cruelty-Free</span>
+              <span className="text-gray-600">Cruelty Free</span>
             </div>
             <div className="flex items-center">
               <div className="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center mr-3">
@@ -61,11 +57,10 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Image on right */}
         <div className="w-full lg:w-1/2 h-[50vh] lg:h-[70vh] relative mt-12 lg:mt-0">
           <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="/modifield.png" // Use an image of a woman using beauty products
+              src="/modifield.png"
               alt="Woman enjoying our beauty products"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -77,8 +72,6 @@ export default function Header() {
           <div className="absolute -top-6 -right-6 w-24 h-24 bg-amber-100 rounded-full opacity-30"></div>
         </div>
       </div>
-
-      {/* Decorative curve */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-white transform -skew-y-3 origin-top-left"></div>
     </header>
   );
