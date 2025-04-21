@@ -139,8 +139,8 @@ export default function Category() {
                             <h3 className="mt-4 text-lg font-medium text-gray-800 text-center font-serif">
                                 {category.name}
                             </h3>
-                            <p className="mt-1 text-sm text-rose-500">
-                                {category.count}+ products
+                            <p className="mt-1 text-sm text-gray-500">
+                                {category.count} products
                             </p>
                         </div>
                     ))}
