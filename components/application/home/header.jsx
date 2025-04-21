@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function Header() {
     return (
-        <header className="relative w-full h-[80vh] bg-gray-100 overflow-hidden">
+        <header className="relative w-full h-[100vh] bg-gray-100 overflow-hidden">
             <div className="absolute inset-0 bg-gray-400">
                 <Image
-                    src="/header-picture.png"
+                    src="/download-pic.jpg"
                     alt="Header image"
                     fill
                     sizes="100vw"
