@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
+import Line from "./LIne";
 
 export default function Category() {
     const categories = [
@@ -83,78 +84,82 @@ export default function Category() {
     }, []);
 
     return (
-        <section className="py-12 px-4 mb-20">
-            <div className="max-w-7xl mx-auto">
-                <h2 className="text-3xl font-serif font-bold text-center text-gray-800 mb-2">
-                    Explore Our <span className="text-rose-400">Beauty</span> World
-                </h2>
-                <p className="text-center text-rose-500 mb-10 max-w-2xl mx-auto">
-                    Discover your perfect beauty routine across our luxurious collections
-                </p>
+        <>
+            <Line />
+            <section className="py-12 px-4 mb-20">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-3xl font-serif font-bold text-center text-gray-800 mb-2">
+                        Explore Our <span className="text-rose-400">Beauty</span> World
+                    </h2>
+                    <p className="text-center text-gray-500 mb-10 max-w-2xl mx-auto">
+                        Discover your perfect beauty routine across our luxurious collections
+                    </p>
 
-                <div className="relative">
-                {showScrollLeft && (
-                    <button 
-                        onClick={() => scroll('left')}
-                        className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-rose-500 hover:bg-rose-50 transition-all"
-                        aria-label="Scroll left"
-                    >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                    </button>
-                )}
-
-                {showScrollRight && (
-                    <button 
-                        onClick={() => scroll('right')}
-                        className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-rose-500 hover:bg-rose-50 transition-all"
-                        aria-label="Scroll right"
-                    >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </button>
-                )}
-                <div 
-                    ref={containerRef}
-                    className="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide"
-                    style={{ scrollSnapType: 'x mandatory' }}
-                >
-                    {categories.map((category) => (
-                        <div 
-                            key={category.id}
-                            className="flex-shrink-0 w-40 sm:w-48 md:w-56 flex flex-col items-center"
-                            style={{ scrollSnapAlign: 'start' }}
+                    <div className="relative">
+                    {showScrollLeft && (
+                        <button 
+                            onClick={() => scroll('left')}
+                            className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-rose-500 hover:bg-rose-50 transition-all"
+                            aria-label="Scroll left"
                         >
-                            <div className={`relative w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 ${category.borderColor} ${category.bgColor} shadow-lg transition-transform duration-300 hover:scale-105`}>
-                                <Image
-                                    src={category.image}
-                                    alt={category.name}
-                                    fill
-                                    className="object-cover object-center"
-                                    sizes="(max-width: 640px) 128px, (max-width: 768px) 144px, 160px"
-                                />
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                    )}
+
+                    {showScrollRight && (
+                        <button 
+                            onClick={() => scroll('right')}
+                            className="hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-rose-500 hover:bg-rose-50 transition-all"
+                            aria-label="Scroll right"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    )}
+                    <div 
+                        ref={containerRef}
+                        className="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide"
+                        style={{ scrollSnapType: 'x mandatory' }}
+                    >
+                        {categories.map((category) => (
+                            <div 
+                                key={category.id}
+                                className="flex-shrink-0 w-40 sm:w-48 md:w-56 flex flex-col items-center"
+                                style={{ scrollSnapAlign: 'start' }}
+                            >
+                                <div className={`relative w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 ${category.borderColor} ${category.bgColor} shadow-lg transition-transform duration-300 hover:scale-105`}>
+                                    <Image
+                                        src={category.image}
+                                        alt={category.name}
+                                        fill
+                                        className="object-cover object-center"
+                                        sizes="(max-width: 640px) 128px, (max-width: 768px) 144px, 160px"
+                                    />
+                                </div>
+                                <h3 className="mt-4 text-lg font-medium text-gray-800 text-center font-serif">
+                                    {category.name}
+                                </h3>
+                                <p className="mt-1 text-sm text-gray-500">
+                                    {category.count} products
+                                </p>
                             </div>
-                            <h3 className="mt-4 text-lg font-medium text-gray-800 text-center font-serif">
-                                {category.name}
-                            </h3>
-                            <p className="mt-1 text-sm text-gray-500">
-                                {category.count} products
-                            </p>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+                </div>
+
+                {/* Mobile scroll indicator */}
+                <div className="md:hidden text-center mt-4">
+                    <svg className="w-6 h-6 mx-auto text-rose-300 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <p className="text-xs text-rose-400 mt-1">Swipe to explore more</p>
                 </div>
             </div>
-
-            {/* Mobile scroll indicator */}
-            <div className="md:hidden text-center mt-4">
-                <svg className="w-6 h-6 mx-auto text-rose-300 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-                <p className="text-xs text-rose-400 mt-1">Swipe to explore more</p>
-            </div>
-        </div>
-        </section>
+            </section>
+        </>
+        
     );
 }
