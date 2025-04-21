@@ -8,7 +8,7 @@ import MobileBottomNav from './MobileBottomNav';
 export default function Navbar() {
     return (
         <>
-        <nav className="bg-white text-black shadow-sm sticky top-0 z-50 md:relative">
+        <nav className="bg-white text-black sticky top-0 z-50 md:relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
                 {/* Left: Logo */}
