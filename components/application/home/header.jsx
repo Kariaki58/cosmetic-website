@@ -1,35 +1,85 @@
 import Image from "next/image";
 
 export default function Header() {
-    return (
-        <header className="relative w-full h-[100vh] bg-gray-100 overflow-hidden">
-            <div className="absolute inset-0 bg-gray-400">
-                <Image
-                    src="/download-pic.jpg"
-                    alt="Header image"
-                    fill
-                    sizes="100vw"
-                    className="rounded-none md:rounded-lg object-cover object-center"
-                    priority
-                />
+  return (
+    <header className="relative w-full min-h-[70vh] bg-gradient-to-r from-[#fff5f5] to-[#fff] overflow-hidden">
+      {/* Decorative floral elements */}
+      <div className="absolute top-0 left-0 w-1/3 h-full opacity-10">
+        <Image
+          src="/floral.png"
+          alt="Floral decoration"
+          fill
+          className="object-cover"
+        />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col lg:flex-row items-center">
+        {/* Text content - now on left */}
+        <div className="w-full lg:w-1/2 lg:pr-12 flex flex-col justify-center relative z-10">
+          <span className="text-lg font-medium text-rose-500 mb-2 tracking-widest">
+            LUXURY BEAUTY COLLECTION
+          </span>
+          
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold text-gray-800 mb-6 leading-tight">
+            Reveal Your <span className="text-rose-400">Natural</span> Radiance
+          </h1>
+
+          <p className="text-xl lg:text-2xl text-gray-600 mb-10 max-w-2xl leading-relaxed">
+            Elevate your beauty routine with our carefully curated, cruelty-free products 
+            that enhance your natural glow while caring for your skin.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6">
+            <button className="bg-rose-500 hover:bg-rose-600 text-white font-medium py-4 px-10 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center">
+              <span>Discover Your Glow</span>
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+            <button className="border-2 border-rose-400 hover:bg-rose-50 text-rose-500 font-medium py-4 px-10 rounded-full transition-all duration-300 hover:scale-105 flex items-center justify-center">
+              <span>Our Philosophy</span>
+            </button>
+          </div>
+
+          <div className="mt-12 flex items-center space-x-6">
+            <div className="flex items-center">
+              <div className="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center mr-3">
+                <svg className="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                </svg>
+              </div>
+              <span className="text-gray-600">Cruelty-Free</span>
             </div>
-
-            <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-md">
-                    Welcome to <span className="text-amber-700">Beauty Shop</span>
-                </h1>
-
-                <p className="text-lg sm:text-xl lg:text-2xl text-white mb-8 max-w-2xl drop-shadow-md">
-                    Discover our premium collection of beauty products for your perfect look
-                </p>
-
-                <button className="bg-green-800 hover:bg-green-900 cursor-pointer text-white font-semibold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
-                    Shop Now
-                </button>
+            <div className="flex items-center">
+              <div className="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center mr-3">
+                <svg className="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                </svg>
+              </div>
+              <span className="text-gray-600">Natural Ingredients</span>
             </div>
+          </div>
+        </div>
 
-            {/* Optional decorative elements */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
-        </header>
-    );
+        {/* Image on right */}
+        <div className="w-full lg:w-1/2 h-[50vh] lg:h-[70vh] relative mt-12 lg:mt-0">
+          <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
+            <Image
+              src="/bg-image-2.webp" // Use an image of a woman using beauty products
+              alt="Woman enjoying our beauty products"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-center"
+              priority
+            />
+          </div>
+          <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-rose-100 rounded-full opacity-30"></div>
+          <div className="absolute -top-6 -right-6 w-24 h-24 bg-amber-100 rounded-full opacity-30"></div>
+        </div>
+      </div>
+
+      {/* Decorative curve */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-white transform -skew-y-3 origin-top-left"></div>
+    </header>
+  );
 }
