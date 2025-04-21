@@ -1,4 +1,5 @@
 import Category from "@/components/application/home/categoy";
+import DiscountCards from "@/components/application/home/DiscountCards";
 import Header from "@/components/application/home/header";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div>
       <Header />
       <Category />
+      <DiscountCards />
     </div>
   );
 }
