@@ -107,13 +107,16 @@ export default function BestSeller() {
 
             <div
                 className="relative w-full pb-[100%] group"
-                onClick={() => setShowOverlay(!showOverlay)}
             >
                 <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover transition-opacity rounded-lg"
+                />
+                <div
+                    className="absolute inset-0 z-10 cursor-pointer"
+                    onClick={() => setShowOverlay(!showOverlay)}
                 />
 
                 <div
