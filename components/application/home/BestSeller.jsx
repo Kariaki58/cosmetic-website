@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Heart, ShoppingBag, Expand } from "lucide-react";
 import { useRef, useState } from "react";
+import Link from "next/link";
 
 export default function BestSeller() {
     const products = [
@@ -77,7 +78,6 @@ export default function BestSeller() {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
-    const [activeProduct, setActiveProduct] = useState(null);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -97,94 +97,107 @@ export default function BestSeller() {
         setIsDragging(false);
     };
 
-    const ProductCard = ({ product }) => (
-        <div 
-            className="group relative rounded-lg overflow-hidden w-[280px] flex-shrink-0 mx-2"
-            onClick={() => setActiveProduct(activeProduct === product.id ? null : product.id)}
-        >
-            {product.discount > 0 && (
-                <span className="absolute top-3 left-3 bg-green-900 text-white text-xs font-bold px-2 py-1 rounded-full z-10">
-                    {product.discount}% OFF
-                </span>
-            )}
+    const generateSlug = (name) => {
+        return name
+            .toLowerCase()
+            .replace(/[^\w\s]/gi, '') // Remove special characters
+            .replace(/\s+/g, '-')     // Replace spaces with hyphens
+            .replace(/-+/g, '-');      // Replace multiple hyphens with single
+    };
 
-            <div className="relative w-full pb-[100%]">
-                <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover transition-opacity rounded-lg"
-                    style={{ opacity: activeProduct === product.id ? 0.9 : 1 }}
-                />
-                
-                {/* Desktop Hover Actions */}
-                <div className="absolute inset-0 hidden md:flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/10">
-                    <button className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
-                        <Heart className="w-5 h-5 text-gray-700" />
-                    </button>
-                    <button className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
-                        <Expand className="w-5 h-5 text-gray-700" />
-                    </button>
-                </div>
-            </div>
+    const ProductCard = ({ product }) => {
+        const productSlug = generateSlug(product.name);
+        
+        return (
+            <div className="relative rounded-lg overflow-hidden w-[280px] flex-shrink-0 mx-2">
+                {product.discount > 0 && (
+                    <span className="absolute top-3 left-3 bg-green-900 text-white text-xs font-bold px-2 py-1 rounded-full z-10">
+                        {product.discount}% OFF
+                    </span>
+                )}
 
-            <div className="mt-4">
-                <div className="flex justify-between">
-                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">
-                        {product.category}
-                    </p>
-                    <div className="flex items-center mb-2">
-                        <div className="flex mr-1">
-                            {[...Array(5)].map((_, i) => (
-                                <span key={i}>
-                                    {i < Math.floor(product.rating) ? (
-                                        <span className="text-amber-400">★</span>
-                                    ) : (
-                                        <span className="text-gray-300">★</span>
-                                    )}
-                                </span>
-                            ))}
-                        </div>
-                        <span className="text-xs text-gray-500">
-                            ({product.reviewCount})
-                        </span>
+                <div className="relative w-full pb-[100%] group">
+                    <Link href={`/products/${productSlug}`}>
+                        <Image
+                            src={product.image}
+                            alt={product.name}
+                            fill
+                            className="object-cover transition-opacity rounded-lg hover:opacity-90"
+                        />
+                    </Link>
+                    
+                    {/* Desktop Hover Actions */}
+                    <div className="absolute inset-0 hidden md:flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/10">
+                        <button className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
+                            <Heart className="w-5 h-5 text-gray-700" />
+                        </button>
+                        <Link href={`/products/${productSlug}`} className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
+                            <Expand className="w-5 h-5 text-gray-700" />
+                        </Link>
                     </div>
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-900 mb-1 truncate">
-                    {product.name}
-                </h3>
-                <div className="flex items-center justify-between">
-                    <div>
-                        {product.discount > 0 ? (
-                            <>
-                                <span className="text-lg font-bold text-gray-900 mr-2">
-                                    ${product.discountedPrice.toFixed(2)}
-                                </span>
-                                <span className="text-sm text-gray-500 line-through">
+                <div className="mt-4">
+                    <div className="flex justify-between">
+                        <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">
+                            {product.category}
+                        </p>
+                        <div className="flex items-center mb-2">
+                            <div className="flex mr-1">
+                                {[...Array(5)].map((_, i) => (
+                                    <span key={i}>
+                                        {i < Math.floor(product.rating) ? (
+                                            <span className="text-amber-400">★</span>
+                                        ) : (
+                                            <span className="text-gray-300">★</span>
+                                        )}
+                                    </span>
+                                ))}
+                            </div>
+                            <span className="text-xs text-gray-500">
+                                ({product.reviewCount})
+                            </span>
+                        </div>
+                    </div>
+
+                    <Link 
+                        href={`/products/${productSlug}`} 
+                        className="text-lg font-semibold text-gray-800 mb-1 hover:underline"
+                    >
+                        {product.name}
+                    </Link>
+                    <div className="flex items-center justify-between">
+                        <div>
+                            {product.discount > 0 ? (
+                                <>
+                                    <span className="text-lg font-bold text-gray-900 mr-2">
+                                        ${product.discountedPrice.toFixed(2)}
+                                    </span>
+                                    <span className="text-sm text-gray-500 line-through">
+                                        ${product.price.toFixed(2)}
+                                    </span>
+                                </>
+                            ) : (
+                                <span className="text-lg font-bold text-gray-900">
                                     ${product.price.toFixed(2)}
                                 </span>
-                            </>
-                        ) : (
-                            <span className="text-lg font-bold text-gray-900">
-                                ${product.price.toFixed(2)}
-                            </span>
-                        )}
+                            )}
+                        </div>
+                        <button 
+                            className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-medium py-2 px-4 rounded-full shadow-lg transition-all duration-300 flex items-center"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                console.log(`Added ${product.name} to cart`);
+                            }}
+                        >
+                            <ShoppingBag className="w-4 h-4 mr-1" />
+                            <span className="text-xs font-medium">Add to Bag</span>
+                        </button>
                     </div>
-                    <button 
-                        className={`bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-medium py-2 px-4 rounded-full shadow-lg transition-all duration-300 flex items-center z-20`}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            console.log(`Added ${product.name} to cart`);
-                        }}
-                    >
-                        <ShoppingBag className="w-4 h-4 mr-1" />
-                        <span className="text-xs font-medium">Add to Bag</span>
-                    </button>
                 </div>
             </div>
-        </div>
-    );
+        );
+    };
 
     return (
         <section className="py-16 px-4 sm:px-6 lg:px-8">
