@@ -77,7 +77,7 @@ export default function BestSeller() {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
-    const [showOverlay, setShowOverlay] = useState(false);
+    const [activeProduct, setActiveProduct] = useState(null);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -98,43 +98,32 @@ export default function BestSeller() {
     };
 
     const ProductCard = ({ product }) => (
-        <div className="group relative rounded-lg overflow-hidden w-[280px] flex-shrink-0 mx-2">
+        <div 
+            className="group relative rounded-lg overflow-hidden w-[280px] flex-shrink-0 mx-2"
+            onClick={() => setActiveProduct(activeProduct === product.id ? null : product.id)}
+        >
             {product.discount > 0 && (
                 <span className="absolute top-3 left-3 bg-green-900 text-white text-xs font-bold px-2 py-1 rounded-full z-10">
                     {product.discount}% OFF
                 </span>
             )}
 
-            <div
-                className="relative w-full pb-[100%] group"
-            >
+            <div className="relative w-full pb-[100%]">
                 <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover transition-opacity rounded-lg"
+                    style={{ opacity: activeProduct === product.id ? 0.9 : 1 }}
                 />
-                <div
-                    className="absolute inset-0 z-10 cursor-pointer"
-                    onClick={() => setShowOverlay(!showOverlay)}
-                />
-
-                <div
-                    className={`
-                        absolute inset-0 flex items-center justify-center gap-3
-                        transition-opacity duration-300 bg-black/10
-                        ${showOverlay ? "opacity-100" : "opacity-0"} 
-                        group-hover:opacity-100
-                    `}
-                >
+                
+                {/* Desktop Hover Actions */}
+                <div className="absolute inset-0 hidden md:flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/10">
                     <button className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
                         <Heart className="w-5 h-5 text-gray-700" />
                     </button>
                     <button className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
                         <Expand className="w-5 h-5 text-gray-700" />
-                    </button>
-                    <button className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
-                        <ShoppingBag className="w-5 h-5 text-gray-700" />
                     </button>
                 </div>
             </div>
@@ -182,6 +171,16 @@ export default function BestSeller() {
                             </span>
                         )}
                     </div>
+                    <button 
+                        className={`bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-medium py-2 px-4 rounded-full shadow-lg transition-all duration-300 flex items-center z-20`}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            console.log(`Added ${product.name} to cart`);
+                        }}
+                    >
+                        <ShoppingBag className="w-4 h-4 mr-1" />
+                        <span className="text-xs font-medium">Add to Bag</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -196,6 +195,7 @@ export default function BestSeller() {
                         Products loved by our community
                     </p>
                 </div>
+
                 <div 
                     ref={containerRef}
                     className="relative overflow-x-auto whitespace-nowrap py-4 -mx-4 px-4 no-scrollbar"
@@ -210,6 +210,7 @@ export default function BestSeller() {
                         ))}
                     </div>
                 </div>
+
                 <style jsx>{`
                     .no-scrollbar::-webkit-scrollbar {
                         display: none;
