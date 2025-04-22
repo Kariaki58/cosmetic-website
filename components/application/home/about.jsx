@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutComponent() {
     return (
-        <section className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8 flex items-center">
+        <section className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8 flex items-center overflow-hidden">
             <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
                 {/* Floral Image - On soft gray background */}
                 <div className="relative bg-gray-100 rounded-2xl p-8 shadow-inner flex justify-center">

@@ -77,6 +77,7 @@ export default function BestSeller() {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
+    const [showOverlay, setShowOverlay] = useState(false);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -98,22 +99,31 @@ export default function BestSeller() {
 
     const ProductCard = ({ product }) => (
         <div className="group relative rounded-lg overflow-hidden w-[280px] flex-shrink-0 mx-2">
-            {/* Product card content remains the same */}
             {product.discount > 0 && (
                 <span className="absolute top-3 left-3 bg-green-900 text-white text-xs font-bold px-2 py-1 rounded-full z-10">
                     {product.discount}% OFF
                 </span>
             )}
 
-            <div className="relative w-full pb-[100%]">
+            <div
+                className="relative w-full pb-[100%] group"
+                onClick={() => setShowOverlay(!showOverlay)}
+            >
                 <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover group-hover:opacity-90 transition-opacity rounded-lg"
+                    className="object-cover transition-opacity rounded-lg"
                 />
-                
-                <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/10">
+
+                <div
+                    className={`
+                        absolute inset-0 flex items-center justify-center gap-3
+                        transition-opacity duration-300 bg-black/10
+                        ${showOverlay ? "opacity-100" : "opacity-0"} 
+                        group-hover:opacity-100
+                    `}
+                >
                     <button className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors">
                         <Heart className="w-5 h-5 text-gray-700" />
                     </button>
@@ -183,8 +193,6 @@ export default function BestSeller() {
                         Products loved by our community
                     </p>
                 </div>
-
-                {/* Horizontal scroll container for all devices */}
                 <div 
                     ref={containerRef}
                     className="relative overflow-x-auto whitespace-nowrap py-4 -mx-4 px-4 no-scrollbar"
@@ -199,7 +207,6 @@ export default function BestSeller() {
                         ))}
                     </div>
                 </div>
-
                 <style jsx>{`
                     .no-scrollbar::-webkit-scrollbar {
                         display: none;
