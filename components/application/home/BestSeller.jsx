@@ -4,6 +4,8 @@ import { Heart, ShoppingBag, Expand, ChevronLeft, ChevronRight } from "lucide-re
 import { useRef, useState } from "react";
 import Link from "next/link";
 import Categories from "./category-best-seller";
+import { Suspense } from "react";
+
 
 export default function BestSeller() {
     const products = [
@@ -215,7 +217,9 @@ export default function BestSeller() {
                     View All Products
                 </Link>
             </div>
-            <Categories />
+            <Suspense fallback={<div className="text-gray-700">Loading...</div>}>
+                <Categories />
+            </Suspense>
             <div className="relative">
                 <button 
                     onClick={scrollLeft}
