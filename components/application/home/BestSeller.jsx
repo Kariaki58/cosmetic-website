@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Heart, ShoppingBag, Expand, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import Link from "next/link";
+import Categories from "./category-best-seller";
 
 export default function BestSeller() {
     const products = [
@@ -198,7 +199,7 @@ export default function BestSeller() {
     return (
         <section className="py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-            <div className="mb-8 md:mb-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div className="flex-1">
                     <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-3">
                         Our <span className="text-rose-500">Best Sellers</span> Products
@@ -214,45 +215,45 @@ export default function BestSeller() {
                     View All Products
                 </Link>
             </div>
-
-                <div className="relative">
-                    <button 
-                        onClick={scrollLeft}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
-                        aria-label="Scroll left"
-                    >
-                        <ChevronLeft className="w-6 h-6 text-gray-700" />
-                    </button>
-                    
-                    <div 
-                        ref={containerRef}
-                        className="relative overflow-x-auto whitespace-nowrap py-4 -mx-4 px-4 no-scrollbar"
-                    >
-                        <div className="inline-flex space-x-6">
-                            {products.map((product) => (
-                                <ProductCard key={product.id} product={product} />
-                            ))}
-                        </div>
+            <Categories />
+            <div className="relative">
+                <button 
+                    onClick={scrollLeft}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
+                    aria-label="Scroll left"
+                >
+                    <ChevronLeft className="w-6 h-6 text-gray-700" />
+                </button>
+                
+                <div 
+                    ref={containerRef}
+                    className="relative overflow-x-auto whitespace-nowrap py-4 -mx-4 px-4 no-scrollbar"
+                >
+                    <div className="inline-flex space-x-6">
+                        {products.map((product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
                     </div>
-                    
-                    <button 
-                        onClick={scrollRight}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
-                        aria-label="Scroll right"
-                    >
-                        <ChevronRight className="w-6 h-6 text-gray-700" />
-                    </button>
                 </div>
+                
+                <button 
+                    onClick={scrollRight}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
+                    aria-label="Scroll right"
+                >
+                    <ChevronRight className="w-6 h-6 text-gray-700" />
+                </button>
+            </div>
 
-                <style jsx>{`
-                    .no-scrollbar::-webkit-scrollbar {
-                        display: none;
-                    }
-                    .no-scrollbar {
-                        -ms-overflow-style: none;
-                        scrollbar-width: none;
-                    }
-                `}</style>
+            <style jsx>{`
+                .no-scrollbar::-webkit-scrollbar {
+                    display: none;
+                }
+                .no-scrollbar {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+            `}</style>
             </div>
         </section>
     );
