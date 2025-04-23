@@ -204,7 +204,7 @@ export default function BestSeller() {
             <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div className="flex-1">
                     <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-3">
-                        Our <span className="text-rose-500">Best Sellers</span> Products
+                        Our <span className="text-rose-500">Best Seller</span> Products
                     </h2>
                     <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
                         Products loved by our community

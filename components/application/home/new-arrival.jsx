@@ -4,80 +4,88 @@ import Link from 'next/link';
 import { Heart, Expand, ShoppingBag } from 'lucide-react';
 
 const NewArrival = () => {
-  // Sample product data (in a real app, this would come from your API or database)
     const newArrivalProducts = [
         {
-        id: 1,
-        name: 'Floral Summer Dress',
-        category: 'Dresses',
-        price: 59.99,
-        discount: 20,
-        discountedPrice: 47.99,
-        image: "/face-care.jpg",
-        rating: 4.5,
-        reviewCount: 128
+            id: 1,
+            name: 'Makeup Kit',
+            category: 'make up',
+            price: 59.99,
+            discount: 50,
+            discountedPrice: 47.99,
+            image: "/face-care.jpg",
+            rating: 4.5,
+            reviewCount: 128
         },
         {
-        id: 2,
-        name: 'Denim Jacket',
-        category: 'Jackets',
-        price: 79.99,
-        discount: 15,
-        discountedPrice: 67.99,
-        image: "/images.jpeg",
-        rating: 4.2,
-        reviewCount: 86
+            id: 2,
+            name: 'hair spray',
+            category: 'hair',
+            price: 79.99,
+            discount: 50,
+            discountedPrice: 67.99,
+            image: "/images.jpeg",
+            rating: 4.2,
+            reviewCount: 86
         },
         {
-        id: 3,
-        name: 'Casual Blouse',
-        category: 'Tops',
-        price: 34.99,
-        discount: 0,
-        image: "/bg-image-2.webp",
-        rating: 4.7,
-        reviewCount: 215
+            id: 3,
+            name: 'Casual Blouse',
+            category: 'Tops',
+            price: 34.99,
+            discount: 50,
+            discountedPrice: 22.99,
+            image: "/bg-image-2.webp",
+            rating: 4.7,
+            reviewCount: 215
         },
         {
-        id: 4,
-        name: 'High-Waist Jeans',
-        category: 'Pants',
-        price: 49.99,
-        discount: 10,
-        discountedPrice: 44.99,
-        image: "/fragrance.jpeg",
-        rating: 4.3,
-        reviewCount: 178
+            id: 4,
+            name: 'Oil Perfume',
+            category: 'fragrance',
+            price: 49.99,
+            discount: 50,
+            discountedPrice: 44.99,
+            image: "/fragrance.jpeg",
+            rating: 4.3,
+            reviewCount: 178
         },
         {
-        id: 5,
-        name: 'Elegant Evening Gown',
-        category: 'Dresses',
-        price: 129.99,
-        discount: 25,
-        discountedPrice: 97.49,
-        image: "/bg-image-2.webp",
-        rating: 4.8,
-        reviewCount: 64
+            id: 5,
+            name: 'Elegant Evening Gown',
+            category: 'Dresses',
+            price: 129.99,
+            discount: 50,
+            discountedPrice: 97.49,
+            image: "/bg-image-2.webp",
+            rating: 4.8,
+            reviewCount: 64
         },
         {
-        id: 6,
-        name: 'Knit Sweater',
-        category: 'Sweaters',
-        price: 45.99,
-        discount: 0,
-        image: '/images.jpeg',
-        rating: 4.1,
-        reviewCount: 92
+            id: 6,
+            name: 'Knit Sweater',
+            category: 'Sweaters',
+            price: 45.99,
+            discountedPrice: 25.99,
+            discount: 50,
+            image: '/images.jpeg',
+            rating: 4.1,
+            reviewCount: 92
         }
     ];
 
     return (
-        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-rose-50 to-white">
+        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-rose-50 to-white relative">
+            <Image
+                src="/floral.png"
+                alt="Our beauty products floral arrangement"
+                fill
+                className="object-cover opacity-20"
+                style={{ mixBlendMode: 'multiply' }}
+            />
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-10">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">New Arrivals</h2>
-                    <p className="text-lg text-rose-600">Fresh styles for your wardrobe</p>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">New <span className='text-rose-500'>Beauty</span> Arrivals.</h2>
+                    <p className="text-lg text-gray-800">Simple, effective, and made for real-life beauty.</p>
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-8">
@@ -95,7 +103,7 @@ const NewArrival = () => {
                                     <span className="inline-block bg-rose-600 text-white text-sm font-bold px-3 py-1 rounded-full mb-3">
                                         50% OFF
                                     </span>
-                                    <h3 className="text-2xl md:text-3xl font-bold mb-2">Spring Collection</h3>
+                                    <h3 className="text-2xl md:text-3xl font-bold mb-2">Glow Up Collection</h3>
                                     <p className="text-sm md:text-base mb-4">Limited time offer from Jan 16 - Jan 26</p>
                                     <Link 
                                         href="/shop" 
@@ -126,20 +134,20 @@ const ProductCard = ({ product }) => {
     const productSlug = generateSlug(product.name);
 
     return (
-        <div className="relative rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div className="relative rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300">
             {product.discount > 0 && (
                 <span className="absolute top-3 left-3 bg-rose-600 text-white text-xs font-bold px-2 py-1 rounded-full z-10">
                 {product.discount}% OFF
                 </span>
             )}
 
-            <div className="relative w-full pb-[120%] group">
+            <div className="relative w-full pb-[100%] group">
                 <Link href={`/products/${productSlug}`}>
                     <Image
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="object-cover transition-opacity rounded-t-lg hover:opacity-90"
+                        className="object-cover transition-opacity rounded-lg hover:opacity-90"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                 </Link>
@@ -196,10 +204,10 @@ const ProductCard = ({ product }) => {
                         {product.discount > 0 ? (
                             <>
                                 <span className="text-lg font-bold text-black mr-2">
-                                ${product.discountedPrice.toFixed(2)}
+                                    ${product.discountedPrice.toFixed(2)}
                                 </span>
                                 <span className="text-sm text-gray-500 line-through">
-                                ${product.price.toFixed(2)}
+                                    ${product.price.toFixed(2)}
                                 </span>
                             </>
                         ) : (
