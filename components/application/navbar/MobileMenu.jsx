@@ -33,8 +33,8 @@ export default function MobileMenu() {
                     <Link href="/about" className="block text-black hover:text-gray-600 transition-colors" onClick={() => setIsOpen(false)}>
                         About Us
                     </Link>
-                    <Link href="/blogs" className="block text-black hover:text-gray-600 transition-colors" onClick={() => setIsOpen(false)}>
-                        Blogs
+                    <Link href="/tracking" className="block text-black hover:text-gray-600 transition-colors" onClick={() => setIsOpen(false)}>
+                        Tracking
                     </Link>
                 </div>
             )}

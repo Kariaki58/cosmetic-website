@@ -12,8 +12,8 @@ export default function NavLinks() {
             <Link href="/about" className="text-black hover:text-gray-600 transition-colors">
                 About Us
             </Link>
-            <Link href="/blogs" className="text-black hover:text-gray-600 transition-colors">
-                Blogs
+            <Link href="/tracking" className="text-black hover:text-gray-600 transition-colors">
+                Tracking
             </Link>
         </div>
     );
