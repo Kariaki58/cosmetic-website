@@ -108,7 +108,7 @@ export default function BestSeller() {
         return (
             <div className="relative rounded-lg overflow-hidden w-[280px] flex-shrink-0 mx-2">
                 {product.discount > 0 && (
-                    <span className="absolute top-3 left-3 bg-green-900 text-white text-xs font-bold px-2 py-1 rounded-full z-10">
+                    <span className="absolute top-3 left-3 bg-rose-600 text-white text-xs font-bold px-2 py-1 rounded-full z-10">
                         {product.discount}% OFF
                     </span>
                 )}
@@ -159,11 +159,11 @@ export default function BestSeller() {
 
                     <Link 
                         href={`/products/${productSlug}`} 
-                        className="text-lg font-semibold text-gray-800 mb-1 hover:underline"
+                        className="text-lg  font-semibold text-gray-800 hover:underline"
                     >
                         {product.name}
                     </Link>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between mt-3">
                         <div>
                             {product.discount > 0 ? (
                                 <>
@@ -188,7 +188,7 @@ export default function BestSeller() {
                             }}
                         >
                             <ShoppingBag className="w-4 h-4 mr-1" />
-                            <span className="text-xs font-medium">Add to Bag</span>
+                            <span className="text-xs font-medium">Add</span>
                         </button>
                     </div>
                 </div>
