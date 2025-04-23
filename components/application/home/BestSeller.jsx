@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Heart, ShoppingBag, Expand } from "lucide-react";
+import { Heart, ShoppingBag, Expand, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 import Link from "next/link";
 
@@ -73,28 +73,24 @@ export default function BestSeller() {
             image: "/bg-image-2.webp"
         }
     ];
-
     const containerRef = useRef(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
 
-    const handleMouseDown = (e) => {
-        setIsDragging(true);
-        setStartX(e.pageX - containerRef.current.offsetLeft);
-        setScrollLeft(containerRef.current.scrollLeft);
+    const scrollLeft = () => {
+        if (containerRef.current) {
+            containerRef.current.scrollBy({
+                left: -300,
+                behavior: 'smooth'
+            });
+        }
     };
 
-    const handleMouseMove = (e) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - containerRef.current.offsetLeft;
-        const walk = (x - startX) * 2;
-        containerRef.current.scrollLeft = scrollLeft - walk;
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
+    const scrollRight = () => {
+        if (containerRef.current) {
+            containerRef.current.scrollBy({
+                left: 300,
+                behavior: 'smooth'
+            });
+        }
     };
 
     const generateSlug = (name) => {
@@ -202,26 +198,50 @@ export default function BestSeller() {
     return (
         <section className="py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-3">Our Best Sellers</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <div className="mb-8 md:mb-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div className="flex-1">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-3">
+                        Our <span className="text-rose-500">Best Sellers</span> Products
+                    </h2>
+                    <p className="text-base sm:text-lg text-gray-600 max-w-2xl">
                         Products loved by our community
                     </p>
                 </div>
-
-                <div 
-                    ref={containerRef}
-                    className="relative overflow-x-auto whitespace-nowrap py-4 -mx-4 px-4 no-scrollbar"
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
+                <Link 
+                    href="/products" 
+                    className="text-sm sm:text-base text-rose-500 hover:underline whitespace-nowrap px-4 py-2 border border-rose-500 rounded-full hover:bg-rose-50 transition-colors"
                 >
-                    <div className="inline-flex space-x-6">
-                        {products.map((product) => (
-                            <ProductCard key={product.id} product={product} />
-                        ))}
+                    View All Products
+                </Link>
+            </div>
+
+                <div className="relative">
+                    <button 
+                        onClick={scrollLeft}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
+                        aria-label="Scroll left"
+                    >
+                        <ChevronLeft className="w-6 h-6 text-gray-700" />
+                    </button>
+                    
+                    <div 
+                        ref={containerRef}
+                        className="relative overflow-x-auto whitespace-nowrap py-4 -mx-4 px-4 no-scrollbar"
+                    >
+                        <div className="inline-flex space-x-6">
+                            {products.map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
+                        </div>
                     </div>
+                    
+                    <button 
+                        onClick={scrollRight}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-colors"
+                        aria-label="Scroll right"
+                    >
+                        <ChevronRight className="w-6 h-6 text-gray-700" />
+                    </button>
                 </div>
 
                 <style jsx>{`
