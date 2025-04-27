@@ -1,5 +1,6 @@
 import { ProductCard } from "./product-card";
 import ActiveFilter from "./active-filter";
+import { Suspense } from "react";
 
 export const products = [
     {
@@ -73,7 +74,9 @@ export const products = [
 export default function ProductDisplay() {
     return (
         <div className="">
-            <ActiveFilter />
+            <Suspense fallback={<div className="h-96 bg-gray-200">Loading..</div>}>
+                <ActiveFilter />
+            </Suspense>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map((product) => (
