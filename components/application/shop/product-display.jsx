@@ -1,6 +1,7 @@
 import { ProductCard } from "./product-card";
 import ActiveFilter from "./active-filter";
 import { Suspense } from "react";
+import { PaginationDemo } from "./pagination";
 
 export const products = [
     {
@@ -82,6 +83,11 @@ export default function ProductDisplay() {
                 {products.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
+            </div>
+            <div className="mt-10">
+                <Suspense fallback={<div className="h-96 bg-gray-200">Loading..</div>}>
+                    <PaginationDemo />
+                </Suspense>
             </div>
         </div>
     );
