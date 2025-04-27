@@ -37,7 +37,7 @@ export default function Shop() {
                     </div>
                 </div>
             </header>
-            <div className="max-w-7xl mx-auto flex gap-10 mt-10 p-2">
+            <div className="lg:flex gap-10 mt-10 p-2">
                 <div className="lg:static absolute right-5 top- z-50 lg:z-auto">
                     <Suspense fallback={<div className="text-gray-700">Loading...</div>}>
                         <Filters />
