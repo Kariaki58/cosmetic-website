@@ -234,7 +234,7 @@ const ProductCard = ({ product }) => {
 };
 
 // Helper function to generate slugs
-function generateSlug(name) {
+export function generateSlug(name) {
     return name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
 }
 
