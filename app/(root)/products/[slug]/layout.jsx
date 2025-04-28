@@ -1,3 +1,4 @@
+import ProductPage from "@/components/application/products/product-display";
 import Link from "next/link";
 
 export default async function ProductPageLayout({ children, params }) {
@@ -7,7 +8,7 @@ export default async function ProductPageLayout({ children, params }) {
     return (
         <main>
             <div>
-                {children}
+                <ProductPage />
                 <ul className="flex justify-around mt-10">
                     <li>
                         <Link href={`/products/${slug}`}>
@@ -20,11 +21,12 @@ export default async function ProductPageLayout({ children, params }) {
                         </Link>
                     </li>
                     <li>
-                        <Link href={`/products/${slug}/review`}>
+                        <Link href={`/products/${slug}/reviews`}>
                             Review
                         </Link>
                     </li>
                 </ul>
+                {children}
             </div>
         </main>
     );
