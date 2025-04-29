@@ -7,7 +7,6 @@ export default async function ProductPage() {
     // Mock product data
     const product = {
         name: "Rose Gold Hydrating Facial Serum",
-        category: "Skincare > Serums",
         inStock: true,
         rating: 4.8,
         reviewCount: 245,

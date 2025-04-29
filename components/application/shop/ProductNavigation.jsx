@@ -52,7 +52,7 @@ export default function ProductNavigation({ slug }) {
                             : "text-gray-600 hover:text-gray-900"
                     )}
                 >
-                    Review
+                    Reviews
                 </Link>
             </li>
         </ul>
