@@ -53,7 +53,6 @@ const Footer = () => {
                 { name: "Our Story", href: "/about" },
                 { name: "Ingredients", href: "/ingredients" },
                 { name: "Sustainability", href: "/sustainability" },
-                { name: "Blog", href: "/blog" },
                 { name: "Careers", href: "/careers" }
             ]
         }

@@ -31,7 +31,7 @@ export default function NavIcons() {
                     className="object-contain"
                 />
             </Link>
-            <Link href="/account" className="text-black hover:text-gray-600 transition-colors">
+            <Link href="/dashboard" className="text-black hover:text-gray-600 transition-colors">
                 <Image
                     src="/icons/person.svg"
                     alt="Favourite Icon"

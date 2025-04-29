@@ -12,6 +12,9 @@ export default function NavLinks() {
             <Link href="/about" className="text-black hover:text-gray-600 transition-colors">
                 About Us
             </Link>
+            <Link href="/contact" className="text-black hover:text-gray-600 transition-colors">
+                Contact Us
+            </Link>
             <Link href="/tracking" className="text-black hover:text-gray-600 transition-colors">
                 Tracking
             </Link>

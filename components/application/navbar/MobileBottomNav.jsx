@@ -39,7 +39,7 @@ export default function MobileBottomNav() {
                     </div>
                 </Link>
                 
-                <Link href="/account" className="flex flex-col items-center justify-center p-2 text-black">
+                <Link href="/dashboard" className="flex flex-col items-center justify-center p-2 text-black">
                     <Image
                         src="/icons/person.svg"
                         alt="Favourite Icon"
