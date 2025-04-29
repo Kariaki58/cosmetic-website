@@ -216,7 +216,7 @@ export default function BestSeller() {
                     </p>
                 </div>
                 <Link 
-                    href="/products" 
+                    href="/shop" 
                     className="text-sm sm:text-base text-rose-500 hover:underline whitespace-nowrap px-4 py-2 border border-rose-500 rounded-full hover:bg-rose-50 transition-colors"
                 >
                     View All Products
