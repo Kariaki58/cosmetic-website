@@ -1,9 +1,8 @@
 import Navbar from "@/components/application/navbar/nav-bar";
-import FAQ from "@/components/application/testimonial/faq";
-import HighlightsBar from "@/components/application/testimonial/HighlightsBar";
-import Testimonials from "@/components/application/testimonial/reviews";
 import Footer from "@/components/application/footer/fotter";
 import Newsletter from "@/components/application/footer/newsletter";
+import HighlightsBar from "@/components/application/testimonial/HighlightsBar";
+
 
 
 export default function RootLayout({ children }) {
@@ -11,8 +10,6 @@ export default function RootLayout({ children }) {
         <main>
             <Navbar />
             {children}
-            <Testimonials />
-            <FAQ />
             <HighlightsBar />
             <Newsletter />
             <Footer />
