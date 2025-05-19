@@ -60,7 +60,7 @@ export default function Header() {
         <div className="w-full lg:w-1/2 h-[50vh] lg:h-[70vh] relative mt-12 lg:mt-0">
           <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl">
             <Image
-              src="/modifield.png"
+              src="/girl-girl.jpg"
               alt="Woman enjoying our beauty products"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
